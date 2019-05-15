@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+    <p>
+        До 25.10.2019 00:00 осталось
+    </p>
+    <p id="counter"></p> 
+</body>
+</html>
+<script type="text/javascript">
+
+function timeLeft(display) {
+  var timeEnd = new Date(2019, 9, 25, 0, 0, 0);
+
+  setInterval(function () {
+    
+  today = Date.now();  
+  diffSeconds = Math.floor((timeEnd - today)/1000);  
+      
+  seconds = diffSeconds%60; 
+  diffMinutes = Math.floor(diffSeconds/60); 
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+      
+  minutes = diffMinutes%60; 
+  diffHour=Math.floor(diffMinutes/60);
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+      
+  hour = diffHour%24; 
+  day = Math.floor(diffHour/24);
+
+  display.textContent = day + " д " + hour + " ч " + minutes + " м " + seconds + " с";
+
+  }, 1000);
+}
+window.onload = function () {
+   display = document.querySelector('#counter');
+   timeLeft(display);  
+}
+</script>
